@@ -145,10 +145,10 @@
                 type:'post',
                 url:'${pageContext.request.contextPath}/backend/customer/modifyCustomer',
                 data:{'id':$('#id').val(),
-                      'name':$('#name').val(),
-                      'loginName':$('#loginName').val(),
-                      'phone':$('#phone').val(),
-                      'address':$('#address').val()
+                    'name':$('#name').val(),
+                    'loginName':$('#loginName').val(),
+                    'phone':$('#phone').val(),
+                    'address':$('#address').val()
                 },
                 dataType:'json',
                 success:function (result) {
@@ -362,28 +362,28 @@
                     <div class="row text-right">
                         <label for="name" class="col-sm-4 control-label">姓名：</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" id="name">
+                            <input type="text" class="form-control" id="name" name="name">
                         </div>
                     </div>
                     <br>
                     <div class="row text-right">
                         <label for="loginName" class="col-sm-4 control-label">帐号：</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" id="loginName">
+                            <input type="text" class="form-control" id="loginName" name="loginName">
                         </div>
                     </div>
                     <br>
                     <div class="row text-right">
                         <label for="phone" class="col-sm-4 control-label">电话：</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" id="phone">
+                            <input type="text" class="form-control" id="phone" name="phone">
                         </div>
                     </div>
                     <br>
                     <div class="row text-right">
                         <label for="address" class="col-sm-4 control-label">地址：</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" id="address">
+                            <input type="text" class="form-control" id="address" name="address">
                         </div>
                     </div>
                     <br>
