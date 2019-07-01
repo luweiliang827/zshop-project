@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 配置加载数据库访问参数的配置文件 -->
+    <context:property-placeholder location="classpath:dataSource.properties" ignore-unresolvable="true"/>
+    <!-- 配置加载FTP服务器的配置文件 加载两个.properties时需要加上 ignore-unresolvable="true" 这个属性-->
+    <context:property-placeholder location="classpath:ftp.properties" ignore-unresolvable="true"/>
+    <!-- 配置数据源 -->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="${jdbc.driverClassName}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="initialSize" value="${jdbc.initialSize}"/>
+    </bean>
+
+    <!-- 在SpringIoc容器中配置MyBatis的核心配置文件SqlSessionFactory -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <!-- 加载mybatis配置文件 -->
+        <property name="mapperLocations" value="classpath:com/lwl/zshop/mapper/*.xml"/>
+        <!-- 别名 -->
+        <property name="typeAliasesPackage" value="com.lwl.zshop.pojo"/>
+        <!-- 配置分页插件 -->
+        <property name="plugins">
+            <list>
+                <bean class="com.github.pagehelper.PageInterceptor">
+                    <property name="properties">
+                        <props>
+                            <!-- 配置方言（helperDialect）告知用什么数据库 -->
+                            <prop key="helperDialect">mysql</prop>
+                        </props>
+                    </property>
+                </bean>
+
+            </list>
+        </property>
+    </bean>
+
+    <!-- 代理 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+        <property name="basePackage" value="com.lwl.zshop.dao"/>
+    </bean>
+</beans>
