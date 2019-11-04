@@ -103,7 +103,7 @@ public class ProductServiceImpl implements ProductService {
         //1、文件上传
         String fileName = StringUtils.renameFileName(productDto.getFileName());  //获取文件名
         //String filePath = productDto.getUploadPath()+"/"+fileName; //获取文件路径
-        String targetPath = new SimpleDateFormat("/yyyy/MM/dd").format(new Date());
+        String targetPath = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
         String filePath = StringUtils.FtpUpload(hostname,username,password,basePath,targetPath,fileName,productDto.getInputStream());
         /*try {
             StreamUtils.copy(productDto.getInputStream(),new FileOutputStream(filePath));
