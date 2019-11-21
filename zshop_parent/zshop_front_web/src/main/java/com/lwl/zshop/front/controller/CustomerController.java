@@ -65,7 +65,7 @@ public class CustomerController {
             String str = RedisUtils.get(session.getId());
             if(!ObjectUtils.isEmpty(str)){
                 //判断验证码是否正确
-                Integer smsRandCode = Integer.parseInt(str);
+                int smsRandCode = Integer.parseInt(str);
                 if(smsRandCode == smsValidCode){
                     session.setAttribute("customer",customer);
                     result.setData(customer);

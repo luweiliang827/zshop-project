@@ -144,7 +144,7 @@
                         $('#pro-name').val(result.data.name);
                         $('#pro-price').val(result.data.price);
                         $('#pro-type').val(result.data.productType.id);
-                        $('#img2').attr('src','${pageContext.request.contextPath}/backend/product/getImage?path='+result.data.image);
+                        $('#img2').attr('src',result.data.image);
                         $('#pro-info').val(result.data.info);
                     }
                 }
@@ -359,7 +359,7 @@
                     </div>
                     <div class="col-sm-4">
                         <!-- 显示图像预览 -->
-                        <img style="width: 160px;height: 180px;" id="img2">
+                        <img style="width: 160px;height: 180px;" id="img2" >
                     </div>
                 </div>
                 <div class="modal-footer">

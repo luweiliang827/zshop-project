@@ -64,7 +64,7 @@ public class StringUtils {
         ftpClient.disconnect();
 
         StringBuilder builder = new StringBuilder();
-        builder.append("ftp://");
+        builder.append("http://");
         builder.append(hostname+"/");
         builder.append(targetPath+"/");
         builder.append(uuid+suffix);
